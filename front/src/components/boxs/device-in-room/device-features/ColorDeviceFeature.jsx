@@ -83,28 +83,17 @@ class ColorDeviceType extends Component {
               <button
                 class="btn py-2 border-1 border-dark"
                 style={{ backgroundColor: color }}
-                onClick={this.toggleColorPicker}
-                disabled={open}
+                // onClick={this.toggleColorPicker}
+                // disabled={open}
               />
             </div>
           </td>
         </tr>
         <tr>
           <td colSpan="3" class="border-0 p-0">
-            <div
-              class={cx('fade', 'w-100', 'mw-100', style.deviceRowPopover, {
-                'd-none': !open,
-                popover: open,
-                show: open
-              })}
-            >
-              <div class="row justify-content-end">
-                <div class="col-8 py-3 d-flex justify-content-center">
-                  <div ref={this.colorPickerRef} />
-                </div>
-                <div class="col-2">
-                  <button class="close m-2" onClick={this.closeColorPicker} />
-                </div>
+            <div class="d-flex justify-content-center">
+              <div class="col-8 py-3  d-flex justify-content-center">
+                <div ref={this.colorPickerRef} />
               </div>
             </div>
           </td>

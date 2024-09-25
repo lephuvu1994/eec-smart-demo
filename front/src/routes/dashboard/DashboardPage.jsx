@@ -4,7 +4,6 @@ import cx from 'classnames';
 import BoxColumns from './BoxColumns';
 import EmptyState from './EmptyState';
 import SetTabletMode from './SetTabletMode';
-import { JOB_STATUS } from '../../../../server/utils/constants';
 
 import style from './style.css';
 
@@ -15,7 +14,7 @@ const DashboardPage = ({ children, ...props }) => (
         <div class="loader" />
         <div class="dimmer-content">
           <div class="my-3 my-md-5">
-            <div class={cx('container')}>
+            <div class={cx('container-fluid')}>
               <div class="page-header">
                 <div>
                   {!props.dashboardListEmpty && (
@@ -86,11 +85,6 @@ const DashboardPage = ({ children, ...props }) => (
                 toggleDefineTabletMode={props.toggleDefineTabletMode}
                 defineTabletModeOpened={props.defineTabletModeOpened}
               />
-              {props.duckDbMigrationJob && props.duckDbMigrationJob.status === JOB_STATUS.IN_PROGRESS && (
-                <div class="alert alert-info">
-                  <Text id="dashboard.duckDbMigrationInProgress" fields={props.duckDbMigrationJob} />
-                </div>
-              )}
               {props.dashboardNotConfigured && <EmptyState dashboardListEmpty={props.dashboardListEmpty} />}
               {!props.dashboardNotConfigured && <BoxColumns homeDashboard={props.currentDashboard} />}
             </div>

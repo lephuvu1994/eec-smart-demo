@@ -15,7 +15,7 @@ class IntegrationPage extends Component {
         <div class="page-main">
           <div class="my-3 my-md-5">
             {integrations && user && user.role && (
-              <div class="container">
+              <div class="container-fluid">
                 <div class="page-header">
                   <h1 class="page-title">
                     <Text id="integration.root.title" />

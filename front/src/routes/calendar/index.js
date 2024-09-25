@@ -61,7 +61,7 @@ class Map extends Component {
       <div class="page">
         <div class="page-main">
           <div class="my-3 my-md-5">
-            <div class="container">
+            <div class="container-fluid">
               {noCalendarConnected && (
                 <div class="alert alert-warning">
                   <Text id="calendar.noCalendarsConnected" />
