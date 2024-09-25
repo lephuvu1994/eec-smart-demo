@@ -65,7 +65,7 @@ const DeviceInRoomCard = ({ ...props }) => {
     return () => {
       props.httpClient.session.dispatcher.removeListener(WEBSOCKET_MESSAGE_TYPES.DEVICE.NEW_STATE, handleUpdatePayload);
     };
-  }, [props]);
+  }, []);
 
   return (
     <>
