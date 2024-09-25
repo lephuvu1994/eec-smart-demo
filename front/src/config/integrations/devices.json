@@ -93,5 +93,10 @@
     "key": "google-cast",
     "link": "google-cast",
     "img": "/assets/integrations/cover/google-cast.jpg"
+  },
+  {
+    "key": "iridium",
+    "link": "iridium",
+    "img": "/assets/integrations/cover/iridiummobile.jpg"
   }
 ]

@@ -1,0 +1,56 @@
+.device_icon {
+  margin-left: -10px;
+  width: 40px;
+  height: 40px;
+  fill: #9aa0ac;
+}
+
+.light_icon_on {
+  fill: #ffcf55b8;
+}
+
+.devices_box {
+  width: 169px;
+  height: 120px;
+  margin: 7px 7px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #6e768740;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.devices_box_on {
+  background-color: #fff;
+}
+
+.devices_box:active {
+  -webkit-transform: scale(1.05);
+}
+
+.emptyStateDivBox {
+  width: 60%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.emptyStateImage {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 300px;
+}
+
+.emptyStateText {
+  margin-top: 20px;
+}

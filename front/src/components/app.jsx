@@ -105,6 +105,10 @@ import MqttDeviceSetupPage from '../routes/integration/all/mqtt/device-page/setu
 import MqttSetupPage from '../routes/integration/all/mqtt/setup-page';
 import MqttDebugPage from '../routes/integration/all/mqtt/debug-page/Debug';
 
+// Iridium integration
+import IridiumDevicePage from '../routes/integration/all/iridium/device-page';
+import IridiumSetupPage from '../routes/integration/all/iridium/setup-page';
+
 // Zigbee2mqtt
 import Zigbee2mqttPage from '../routes/integration/all/zigbee2mqtt/device-page';
 import Zigbee2mqttDiscoverPage from '../routes/integration/all/zigbee2mqtt/discover-page';
@@ -166,8 +170,13 @@ import MELCloudDiscoverPage from '../routes/integration/all/melcloud/discover-pa
 // NodeRed integration
 import NodeRedPage from '../routes/integration/all/node-red/setup-page';
 
+// Custommize
+import RoomsPage from '../routes/rooms';
+import DeviceInRoomPage from '../routes/rooms/devices-in-room';
+
 const defaultState = getDefaultState();
 const store = createStore(defaultState);
+console.log(defaultState);
 
 const AppRouter = connect(
   'currentUrl,user,profilePicture,showDropDown,showCollapsedMenu,fullScreen',
@@ -264,6 +273,8 @@ const AppRouter = connect(
         <ZwaveNodePage path="/dashboard/integration/device/zwave/node" />
         <RtspCameraPage path="/dashboard/integration/device/rtsp-camera" />
         <MqttDevicePage path="/dashboard/integration/device/mqtt" />
+        <IridiumDevicePage path="/dashboard/integration/device/iridium" />
+        <IridiumSetupPage path="/dashboard/integration/device/iridium/setup" />
         <MqttDeviceSetupPage path="/dashboard/integration/device/mqtt/edit" />
         <MqttDeviceSetupPage path="/dashboard/integration/device/mqtt/edit/:deviceSelector" />
         <MqttSetupPage path="/dashboard/integration/device/mqtt/setup" />
@@ -357,6 +368,10 @@ const AppRouter = connect(
         <SettingsBackup path="/dashboard/settings/backup" />
         <SettingsBackgroundJobs path="/dashboard/settings/jobs" />
         <Error type="404" default />
+
+        {/* Customize Code */}
+        <RoomsPage path="/dashboard/rooms" />
+        <DeviceInRoomPage path="/dashboard/rooms/:room_selector" />
       </Router>
     </Layout>
   </div>
