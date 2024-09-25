@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import createStore from 'unistore';
+import devtools  from 'unistore/devtools'
 import get from 'get-value';
 import config from '../config';
 import { Provider, connect } from 'unistore/preact';
@@ -175,8 +176,7 @@ import RoomsPage from '../routes/rooms';
 import DeviceInRoomPage from '../routes/rooms/devices-in-room';
 
 const defaultState = getDefaultState();
-const store = createStore(defaultState);
-console.log(defaultState);
+const store = process.env.NODE_ENV === 'production' ?  createStore(defaultState) : devtools(createStore(defaultState));
 
 const AppRouter = connect(
   'currentUrl,user,profilePicture,showDropDown,showCollapsedMenu,fullScreen',

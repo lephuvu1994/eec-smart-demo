@@ -35,6 +35,12 @@
   -webkit-transform: scale(1.05);
 }
 
+.modal_dialog_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .emptyStateDivBox {
   width: 60%;
   max-width: 400px;
