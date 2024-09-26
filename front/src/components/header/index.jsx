@@ -125,6 +125,16 @@ const Header = ({ ...props }) => {
                     </li>
                     <li class="nav-item">
                       <Link
+                        href="/dashboard/rooms"
+                        class={cx('nav-link', {
+                          active: props.currentUrl === '/dashboard/rooms'
+                        })}
+                      >
+                        <i class="fe fe-inbox" /> <Text id="header.rooms" />
+                      </Link>
+                    </li>
+                    <li class="nav-item">
+                      <Link
                         href="/dashboard/integration"
                         class={props.currentUrl.startsWith('/dashboard/integration') ? 'active nav-link' : 'nav-link'}
                       >
@@ -195,6 +205,16 @@ const Header = ({ ...props }) => {
                     })}
                   >
                     <i class="fe fe-message-square" /> <Text id="header.chat" />
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link
+                    href="/dashboard/rooms"
+                    class={cx('nav-link', {
+                      active: props.currentUrl === '/dashboard/rooms'
+                    })}
+                  >
+                    <i class="fe fe-inbox" /> <Text id="header.rooms" />
                   </Link>
                 </li>
                 <li class="nav-item">
