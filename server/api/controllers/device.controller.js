@@ -2,12 +2,25 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
 const { EVENTS, ACTIONS, ACTIONS_STATUS, SYSTEM_VARIABLE_NAMES } = require('../../utils/constants');
 
 module.exports = function DeviceController(gladys) {
+
+  /**
+   * @api {get} /api/v1/device/:room_id/room getListDeviceByRoomId
+   * @apiName getBySelector
+   * @apiGroup Device
+   */
+  async function getListDeviceByRoomId(req, res) {
+    const devices = await gladys.device.get(req.query);
+    const devicesInRoom = devices.filter(device => device.room_id === (req.params.room_id));
+    res.json(devicesInRoom);
+  }
+
   /**
    * @api {get} /api/v1/device/:device_selector getBySelector
    * @apiName getBySelector
    * @apiGroup Device
    */
   async function getBySelector(req, res) {
+    // eslint-disable-next-line no-console
     const device = gladys.device.getBySelector(req.params.device_selector);
     res.json(device);
   }
@@ -139,6 +152,7 @@ module.exports = function DeviceController(gladys) {
 
   return Object.freeze({
     create: asyncMiddleware(create),
+    getListDeviceByRoomId: asyncMiddleware(getListDeviceByRoomId),
     get: asyncMiddleware(get),
     getDevicesByService: asyncMiddleware(getDevicesByService),
     getBySelector: asyncMiddleware(getBySelector),

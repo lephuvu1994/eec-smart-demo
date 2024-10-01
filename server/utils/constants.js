@@ -88,6 +88,7 @@ const OPENING_SENSOR_STATE = {
 };
 
 const USER_ROLE = {
+  EECADMIN: 'eecAdmin',
   ADMIN: 'admin',
   HABITANT: 'habitant',
   GUEST: 'guest',

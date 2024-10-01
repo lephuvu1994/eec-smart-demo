@@ -1,0 +1,29 @@
+{
+  "projectName": "SmartEecProject",
+  "projectOwner": "VuLe",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "VuLe",
+      "name": "VuLe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84409523?v=4",
+      "profile": "https://github.com/lephuvu1994",
+      "contributions": [
+        "code",
+        "business",
+        "doc",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "commitType": "docs"
+}

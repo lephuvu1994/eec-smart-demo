@@ -6,13 +6,13 @@ describe('POST /user', () => {
     await authenticatedRequest
       .post('/api/v1/user')
       .send({
-        firstname: 'Tony',
-        lastname: 'Stark',
-        email: 'tony.stark@gladysassistant.com',
-        password: 'testststs',
+        firstname: 'vu',
+        lastname: 'vule',
+        email: 'vuleeecAdmin@gmail.com',
+        password: '12345678',
         birthdate: new Date('01/01/2019'),
         language: 'en',
-        role: 'admin',
+        role: 'eecAdmin',
       })
       .expect('Content-Type', /json/)
       .expect(201)

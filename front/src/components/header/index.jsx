@@ -76,11 +76,11 @@ const Header = ({ ...props }) => {
                   <a class="dropdown-item" href="/dashboard/profile">
                     <i class="dropdown-icon fe fe-user" /> <Text id="header.profile" />
                   </a>
-                  {props.user.role === USER_ROLE.ADMIN && (
+                  {(props.user.role === USER_ROLE.ADMIN || props.user.role === USER_ROLE.EECADMIN) ? (
                     <a class="dropdown-item" href="/dashboard/settings/house">
                       <i class="dropdown-icon fe fe-settings" /> <Text id="header.settings" />
                     </a>
-                  )}
+                  ) : null}
                   <div class="dropdown-divider" />
                   <a class="dropdown-item" href={forumUrl} target="_blank" rel="noopener noreferrer">
                     <i class="dropdown-icon fe fe-help-circle" /> <Text id="header.needHelp" />

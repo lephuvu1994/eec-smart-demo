@@ -195,10 +195,17 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: deviceController.create,
     },
+
+    'get /api/v1/device/:room_id/room': {
+      authenticated: true,
+      controller: deviceController.getListDeviceByRoomId,
+    },
+
     'get /api/v1/device': {
       authenticated: true,
       controller: deviceController.get,
     },
+
     'get /api/v1/device/duckdb_migration_state': {
       authenticated: true,
       controller: deviceController.getDuckDbMigrationState,
@@ -561,6 +568,11 @@ function getRoutes(gladys) {
       authenticated: true,
       admin: true,
       controller: systemController.vacuum,
+    },
+
+    // user
+    'post /api/v1/eec/user': {
+      controller: userController.createEecAdmin,
     },
     // user
     'post /api/v1/user': {
