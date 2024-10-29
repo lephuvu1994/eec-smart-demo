@@ -52,10 +52,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         type: DataTypes.ENUM(DEVICE_POLL_FREQUENCIES_LIST),
       },
-      sorting_order: {
-        allowNull: true,
-        type: DataTypes.INTEGER,
-      },
     },
     {},
   );

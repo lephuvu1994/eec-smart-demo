@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
+      image_url: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: "",
+      },
       name: {
         allowNull: false,
         unique: true,
@@ -46,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'room_id',
       sourceKey: 'id',
       as: 'devices',
+    });
+    room.hasMany(models.Scene, {
+      foreignKey: 'room_id',
+      sourceKey: 'id',
+      as: 'scene',
     });
   };
 

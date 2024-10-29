@@ -14,7 +14,7 @@ module.exports = {
     const frenchAdminUser = await db.User.findOne({
       where: {
         language: AVAILABLE_LANGUAGES.FR,
-        role: USER_ROLE.ADMIN,
+        role: USER_ROLE.ADMIN || USER_ROLE.EECADMIN,
       },
     });
     // If no, we don't rename anything

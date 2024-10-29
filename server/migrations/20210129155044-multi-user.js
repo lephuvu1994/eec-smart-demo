@@ -16,7 +16,7 @@ module.exports = {
     });
     const users = await db.User.findAll({
       where: {
-        role: USER_ROLE.ADMIN,
+        role: USER_ROLE.ADMIN || USER_ROLE.EECADMIN,
       },
       raw: true,
     });

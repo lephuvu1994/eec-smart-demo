@@ -17,6 +17,7 @@ async function checkBatteries() {
   const minPercentBattery = await this.variable.getValue(SYSTEM_VARIABLE_NAMES.DEVICE_BATTERY_LEVEL_WARNING_THRESHOLD);
 
   const admins = await this.user.getByRole(USER_ROLE.ADMIN);
+  const eecAdmins = await this.user.getByRole(USER_ROLE.EECADMIN);
 
   if (!minPercentBattery || !admins || admins.length === 0) {
     return;
@@ -30,7 +31,7 @@ async function checkBatteries() {
         return feature.last_value < minPercentBattery;
       })
       .forEach((feature) => {
-        admins.forEach((admin) => {
+        [...eecAdmins,...admins].forEach((admin) => {
           const message = this.brain.getReply(admin.language, 'battery-threshold.success', {
             device: {
               name: device.name,

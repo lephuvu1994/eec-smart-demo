@@ -171,6 +171,13 @@ module.exports = (sequelize, DataTypes) => {
       last_executed: {
         type: DataTypes.DATE,
       },
+      room_id: { // New field to associate scene with a room
+        type: DataTypes.UUID,
+        references: {
+          model: 't_room',
+          key: 'id',
+        },
+      },
     },
     {},
   );
@@ -183,6 +190,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'scene_id',
       sourceKey: 'id',
       as: 'tags',
+    });
+    scene.belongsTo(models.Room, {
+      foreignKey: 'room_id',
+      targetKey: 'id',
+      as: 'room',
     });
   };
 

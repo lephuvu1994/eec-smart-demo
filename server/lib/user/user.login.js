@@ -25,6 +25,7 @@ async function login(email, password) {
       'role',
       'created_at',
       'updated_at',
+      'picture'
     ],
   });
   if (user === null) {

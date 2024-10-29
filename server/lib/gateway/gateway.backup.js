@@ -151,7 +151,8 @@ async function backup(jobId) {
   } catch (e) {
     // If the backup fails, we need to warn the admins of this installation
     const admins = await this.user.getByRole(USER_ROLE.ADMIN);
-    admins.forEach((admin) => {
+    const eecAdmin = await this.user.getByRole(USER_ROLE.EECADMIN);
+    [...eecAdmin, ...admins].forEach((admin) => {
       const message = this.brain.getReply(admin.language, 'backup.fail', {
         errorMessage: e.toString(),
       });

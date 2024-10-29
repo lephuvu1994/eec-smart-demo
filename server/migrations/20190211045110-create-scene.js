@@ -34,6 +34,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      room_id: {
+        type: Sequelize.UUID,
+        references: {
+          model: 't_room',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
     });
   },
   down: async (queryInterface, Sequelize) => queryInterface.dropTable('t_scene'),
