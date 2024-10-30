@@ -7,7 +7,7 @@ module.exports = function EECScanServer(gladys) {
    * @apiGroup Ping
    */
   async function eecScanServer(req, res) {
-    res.json({ status: 200, data: "123" });
+    res.json({ status: 200, data: '123' });
   }
 
   return Object.freeze({

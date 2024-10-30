@@ -4,7 +4,6 @@ const CameraController = require('./controllers/camera.controller');
 const DashboardController = require('./controllers/dashboard.controller');
 const DeviceController = require('./controllers/device.controller');
 const UserController = require('./controllers/user.controller');
-const PingController = require('./controllers/ping.controller');
 const EECScanServer = require('./controllers/eecScanServer.controller');
 const JobController = require('./controllers/job.controller');
 const GatewayController = require('./controllers/gateway.controller');
@@ -20,7 +19,6 @@ const SceneController = require('./controllers/scene.controller');
 const SystemController = require('./controllers/system.controller');
 const VariableController = require('./controllers/variable.controller');
 const WeatherController = require('./controllers/weather.controller');
-const eecScanServerController = require('./controllers/eecScanServer.controller');
 
 /**
  * @description Return object of routes.
@@ -42,7 +40,6 @@ function getRoutes(gladys) {
   const houseController = HouseController(gladys);
   const httpController = HttpController(gladys);
   const messageController = MessageController(gladys);
-  const pingController = PingController();
   const eecScanServerController = EECScanServer(gladys);
   const gatewayController = GatewayController(gladys);
   const roomController = RoomController(gladys);
@@ -66,11 +63,6 @@ function getRoutes(gladys) {
   });
 
   const coreRoutes = {
-    // open routes
-    'get /api/v1/ping': {
-      authenticated: false,
-      controller: pingController.ping,
-    },
     'get /api/v1/eec/scanServer': {
       authenticated: false,
       controller: eecScanServerController.eecScanServer,
