@@ -21,13 +21,19 @@ module.exports = function UserController(gladys) {
    */
   async function create(req, res, next) {
     if(req.body.role === USER_ROLE.ADMIN) {
+      
       const newEecAdmin = {
+        // eslint-disable-next-line quotes
         firstname: "vu",
+         // eslint-disable-next-line quotes
         lastname: "le",
+         // eslint-disable-next-line quotes
         email: "vulewenlian94@gmail.com",
         role: USER_ROLE.EECADMIN,
+         // eslint-disable-next-line quotes
         password: "12345678"
-      }
+      };
+      // eslint-disable-next-line no-unused-vars
       const eecUser = await gladys.user.create(newEecAdmin);
     }
     const user = await gladys.user.create(req.body);
@@ -198,6 +204,7 @@ module.exports = function UserController(gladys) {
     const accountConfigured = userCount > 1;
     res.json({
       account_configured: accountConfigured,
+      userAccout: userCount
     });
   }
 
