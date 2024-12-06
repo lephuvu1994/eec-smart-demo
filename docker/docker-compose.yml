@@ -4,7 +4,7 @@ services:
   gladys:
     build:
       context: ./  # Thư mục hiện tại là thư mục docker, nên đặt context là './'
-      dockerfile: Dockerfile  # Dockerfile trong thư mục docker
+      dockerfile: Dockerfile.buildx  # Dockerfile trong thư mục docker
     container_name: gladys
     restart: always
     privileged: true
