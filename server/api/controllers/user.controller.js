@@ -87,9 +87,10 @@ module.exports = function UserController(gladys) {
       options.expand = options.expand.split(',');
     }
     const users = await gladys.user.get(options);
-    // eslint-disable-next-line no-console
-    console.log('next', next);
     const responseUsers = users.filter((user, idx) => {
+      if(req.user.role === USER_ROLE.EECADMIN) {
+        return true;
+      }
       return user.role !== USER_ROLE.EECADMIN;
     });
     res.json(responseUsers);
