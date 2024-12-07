@@ -25,7 +25,10 @@ async function login(email, password) {
       'role',
       'created_at',
       'updated_at',
-      'picture'
+      'picture',
+      'current_house_id',
+      'temperature_unit_preference',
+      'distance_unit_preference'
     ],
   });
   if (user === null) {
