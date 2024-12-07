@@ -23,6 +23,8 @@ module.exports = function RoomController(gladys) {
    * }
    */
   async function create(req, res) {
+    // eslint-disable-next-line no-console
+    console.log('reqCreate', req.body);
     const newRoom = await gladys.room.create(req.params.house_selector, req.body);
     res.status(201).json(newRoom);
   }
