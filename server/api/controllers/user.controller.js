@@ -20,8 +20,8 @@ module.exports = function UserController(gladys) {
    * @apiSuccess {String} id id of the created user
    */
   async function create(req, res, next) {
-    if(req.body.role === USER_ROLE.ADMIN) {
-      
+    const numberOfUsers = gladys.user.getUserCount();
+    if(req.body.role === USER_ROLE.ADMIN  && numberOfUsers === 0) {
       const newEecAdmin = {
         ...req.body,
         // eslint-disable-next-line quotes
