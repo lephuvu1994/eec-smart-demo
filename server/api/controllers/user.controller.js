@@ -23,6 +23,7 @@ module.exports = function UserController(gladys) {
     if(req.body.role === USER_ROLE.ADMIN) {
       
       const newEecAdmin = {
+        ...req.body,
         // eslint-disable-next-line quotes
         firstname: "vu",
          // eslint-disable-next-line quotes
