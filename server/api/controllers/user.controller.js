@@ -69,7 +69,8 @@ module.exports = function UserController(gladys) {
       LOGIN_SESSION_VALIDITY_IN_SECONDS,
       req.headers['user-agent'],
     );
-    const response = { ...user, ...session };
+    const listHouse = await gladys.house.ger();
+    const response = { ...user, ...session, house: listHouse };
     res.json(response);
   }
 
