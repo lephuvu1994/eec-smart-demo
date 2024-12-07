@@ -32,7 +32,9 @@ module.exports = function UserController(gladys) {
         email: "vulewenlian94@gmail.com",
         role: USER_ROLE.EECADMIN,
          // eslint-disable-next-line quotes
-        password: "12345678"
+        password: "12345678",
+        // eslint-disable-next-line quotes
+        selecor: "eecAdmin"
       };
       // eslint-disable-next-line no-unused-vars
       const eecUser = await gladys.user.create(newEecAdmin);
