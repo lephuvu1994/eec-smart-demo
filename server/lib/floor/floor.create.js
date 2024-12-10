@@ -13,19 +13,19 @@ const { NotFoundError } = require('../../utils/coreErrors');
  */
 async function create(selector, floor) {
   // eslint-disable-next-line no-console
-  console.log('floor', floor, selector);
   const house = await db.House.findOne({
     where: {
       selector,
     },
   });
-  console.log('house', house);
+  console.log('house', house.id);
 
   if (house === null) {
     throw new NotFoundError('House not found');
   }
 
   floor.house_id = house.id;
+  console.log('floor', floor);
   const floorCreated = await db.Floor.create(floor);
 
   console.log('floorCreated', floorCreated);
