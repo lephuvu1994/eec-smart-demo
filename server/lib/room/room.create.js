@@ -3,25 +3,26 @@ const { NotFoundError } = require('../../utils/coreErrors');
 
 /**
  * @description Create a room in a house.
- * @param {string} selector - The selector of a house.
+ * @param {string} houseSelector - The selector of a house.
+ * @param {string} floorSelector - The selector of a floor.
  * @param {object} room - The room to create.
  * @returns {Promise<object>} Resolve with created room.
  * @example
- * gladys.room.create('my-house', {
+ * gladys.room.create('my-house', 'my-floor', {
  *    name: 'Kitchen'
  * });
  */
-async function create(selector, room) {
+async function create(houseSelector, floorSelector, room) {
   // eslint-disable-next-line no-console
   console.log('room', room);
   const house = await db.House.findOne({
     where: {
-      selector,
+      selector: houseSelector,
     },
   });
   const floor = await db.Floor.findOne({
     where: {
-      selector,
+      selector: floorSelector,
     },
   });
 

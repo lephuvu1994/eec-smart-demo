@@ -386,11 +386,6 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: roomController.getBySelector,
     },
-    'post /api/v1/house/:house_selector/room': {
-      authenticated: true,
-      admin: true,
-      controller: roomController.create,
-    },
     'post /api/v1/house/:house_selector/floor/:floor_selector/room': {
       authenticated: true,
       admin: true,
