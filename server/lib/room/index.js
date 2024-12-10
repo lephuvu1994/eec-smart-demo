@@ -1,5 +1,5 @@
 const { create } = require('./room.create');
-const { getBySelector } = require('./room.getBySelector');
+const { getBySelector, getByHouseAndFloor } = require('./room.getBySelector');
 const { get } = require('./room.get');
 const { getAll } = require('./room.getAll');
 const { init } = require('./room.init');
@@ -14,6 +14,7 @@ Room.prototype.create = create;
 Room.prototype.get = get;
 Room.prototype.getAll = getAll;
 Room.prototype.getBySelector = getBySelector;
+Room.prototype.getByHouseAndFloor = getByHouseAndFloor;
 Room.prototype.init = init;
 Room.prototype.update = update;
 Room.prototype.destroy = destroy;

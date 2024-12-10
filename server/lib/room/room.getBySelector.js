@@ -73,6 +73,55 @@ async function getBySelector(selector, options) {
   return room.get({ plain: true });
 }
 
+/**
+ * @description Get rooms by house and floor.
+ * @param {string} houseId - The ID of the house.
+ * @param {number} floor - The floor number.
+ * @param {object} [options] - Options of the query.
+ * @returns {Promise<Array>} Resolve with array of rooms.
+ * @example
+ * gladys.room.getByHouseAndFloor('house_id', 1);
+ */
+async function getByHouseAndFloor(houseId, floor, options) {
+  const optionsWithDefault = { ...DEFAULT_OPTIONS, ...options };
+  const include = [];
+  if (optionsWithDefault.expand.includes('devices')) {
+    include.push({
+      model: db.Device,
+      as: 'devices',
+      attributes: DEVICE_ATTRIBUTES,
+      include: [
+        {
+          model: db.DeviceFeature,
+          as: 'features',
+          attributes: DEVICE_FEATURES_ATTRIBUTES,
+          where: {
+            category: {
+              [Op.not]: DEVICE_FEATURE_CATEGORIES.CAMERA,
+            },
+          },
+        },
+        {
+          model: db.Service,
+          as: 'service',
+          attributes: SERVICE_ATTRIBUTES,
+        },
+      ],
+    });
+  }
+
+  const rooms = await db.Room.findAll({
+    include,
+    where: {
+      house_id: houseId,
+      floor,
+    },
+  });
+
+  return rooms.map(room => room.get({ plain: true }));
+}
+
 module.exports = {
   getBySelector,
+  getByHouseAndFloor,
 };

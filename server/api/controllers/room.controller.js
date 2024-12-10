@@ -8,7 +8,7 @@ const { buildExpandObject } = require('../../utils/buildExpandObject');
 
 module.exports = function RoomController(gladys) {
   /**
-   * @api {post} /api/v1/house/:house_selector/room create
+   * @api {post} /api/v1/house/:house_selector/floor/:floor_selector/room create
    * @apiName create
    * @apiGroup Room
    * @apiUse RoomParam
@@ -18,14 +18,17 @@ module.exports = function RoomController(gladys) {
    *   "name": "my room",
    *   "selector": "my-room",
    *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
+   *   "floor_id": "4dfa6-24de-4b46-afc7-370772f068d5",
    *   "updated_at": "2019-05-09T04:01:48.983Z",
    *   "created_at": "2019-05-09T04:01:48.983Z"
    * }
    */
   async function create(req, res) {
-    // eslint-disable-next-line no-console
-    console.log('reqCreate', req.body);
-    const newRoom = await gladys.room.create(req.params.house_selector, req.body);
+    const newRoom = await gladys.room.create(
+      req.params.house_selector,
+      req.params.floor_selector,
+      req.body
+    );
     res.status(201).json(newRoom);
   }
 
@@ -141,11 +144,37 @@ module.exports = function RoomController(gladys) {
     res.json(rooms);
   }
 
+   /**
+   * @api {get} /api/v1/house/:house_selector/floor/:floor_selector/room get rooms by house and floor
+   * @apiName getByHouseAndFloor
+   * @apiGroup Room
+   * @apiSuccessExample {json} Success-Response:
+   * [
+   *   {
+   *     "id": "2398c689-8b47-43cc-ad32-e98d9be098b5",
+   *     "house_id": "a741dfa6-24de-4b46-afc7-370772f068d5",
+   *     "floor_id": "4dfa6-24de-4b46-afc7-370772f068d5",
+   *     "name": "Test room",
+   *     "selector": "test-room",
+   *     "created_at": "2019-02-12T07:49:07.556Z",
+   *     "updated_at": "2019-02-12T07:49:07.556Z"
+   *   }
+   * ]
+   */
+   async function getByHouseAndFloor(req, res) {
+    const rooms = await gladys.room.getByHouseAndFloor(
+      req.params.house_selector,
+      req.params.floor_selector
+    );
+    res.json(rooms);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     update: asyncMiddleware(update),
     getBySelector: asyncMiddleware(getBySelector),
     get: asyncMiddleware(get),
+    getByHouseAndFloor: asyncMiddleware(getByHouseAndFloor),
   });
 };

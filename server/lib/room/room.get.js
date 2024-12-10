@@ -5,6 +5,7 @@ const DEFAULT_OPTIONS = {
   skip: 0,
   order_by: 'name',
   order_dir: 'asc',
+  floor: null,
 };
 
 const DEVICE_ATTRIBUTES = ['name', 'selector'];
@@ -58,6 +59,12 @@ async function get(options) {
     offset: optionsWithDefault.skip,
     order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
   };
+
+  if (optionsWithDefault.floor !== null) {
+    queryParams.where = {
+      floor: optionsWithDefault.floor
+    };
+  }
 
   if (optionsWithDefault.take !== undefined) {
     queryParams.limit = optionsWithDefault.take;

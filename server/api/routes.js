@@ -13,6 +13,7 @@ const LightController = require('./controllers/light.controller');
 const LocationController = require('./controllers/location.controller');
 const MessageController = require('./controllers/message.controller');
 const RoomController = require('./controllers/room.controller');
+const FloorController = require('./controllers/floor.controller');
 const SessionController = require('./controllers/session.controller');
 const ServiceController = require('./controllers/service.controller');
 const SceneController = require('./controllers/scene.controller');
@@ -43,6 +44,7 @@ function getRoutes(gladys) {
   const eecScanServerController = EECScanServer(gladys);
   const gatewayController = GatewayController(gladys);
   const roomController = RoomController(gladys);
+  const floorController = FloorController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
   const serviceController = ServiceController(gladys);
@@ -358,10 +360,28 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: gatewayController.openAIAsk,
     },
+    //floor
+    'get /api/v1/floor': {
+      authenticated: true,
+      controller: floorController.get,
+    },
+    'post /api/v1/house/:house_selector/floor': {
+      authenticated: true,
+      admin: true,
+      controller: floorController.create,
+    },
+    'get /api/v1/house/:house_selector/floor': {
+      authenticated: true,
+      controller: floorController.getByHouse,
+    },
     // room
     'get /api/v1/room': {
       authenticated: true,
       controller: roomController.get,
+    },
+    'get /api/v1/house/:house_selector/floor/:floor_selector/room': {
+      authenticated: true,
+      controller: roomController.getByHouseAndFloor,
     },
     'get /api/v1/room/:room_selector': {
       authenticated: true,
@@ -372,6 +392,12 @@ function getRoutes(gladys) {
       admin: true,
       controller: roomController.create,
     },
+    'post /api/v1/house/:house_selector/floor/:floor_selector/room': {
+      authenticated: true,
+      admin: true,
+      controller: roomController.create,
+    },
+
     'patch /api/v1/room/:room_selector': {
       authenticated: true,
       admin: true,

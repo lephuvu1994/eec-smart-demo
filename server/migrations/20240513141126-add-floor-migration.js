@@ -1,10 +1,13 @@
+'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('t_room', {
+    // 1. Tạo bảng t_floor
+    await queryInterface.createTable('t_floor', {
       id: {
-        allowNull: false,
-        primaryKey: true,
         type: Sequelize.UUID,
+        primaryKey: true,
+        defaultValue: Sequelize.UUIDV4,
       },
       house_id: {
         allowNull: false,
@@ -16,19 +19,8 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      floor_id: {
-        allowNull: false,
-        type: Sequelize.UUID,
-        references: {
-          model: 't_floor',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
       name: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       selector: {
@@ -39,14 +31,20 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     });
 
-    await queryInterface.addIndex('t_room', ['house_id', 'floor_id']);
+    //
   },
-  down: async (queryInterface, Sequelize) => queryInterface.dropTable('t_room'),
+
+  down: async (queryInterface, Sequelize) => {
+    // 1. Xóa bảng t_floor
+    await queryInterface.dropTable('t_floor');
+  },
 };

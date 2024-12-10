@@ -1,8 +1,8 @@
 const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
-  const room = sequelize.define(
-    't_room',
+  const floor = sequelize.define(
+    't_floor',
     {
       id: {
         type: DataTypes.UUID,
@@ -16,19 +16,6 @@ module.exports = (sequelize, DataTypes) => {
           model: 't_house',
           key: 'id',
         },
-      },
-      floor_id: {
-        allowNull: false,
-        type: DataTypes.UUID,
-        references: {
-          model: 't_floor',
-          key: 'id',
-        },
-      },
-      image_url: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        defaultValue: "",
       },
       name: {
         allowNull: false,
@@ -47,30 +34,20 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
-  room.beforeValidate(addSelector);
+  floor.beforeValidate(addSelector);
 
-  room.associate = (models) => {
-    room.belongsTo(models.House, {
+  floor.associate = (models) => {
+    floor.belongsTo(models.House, {
       foreignKey: 'house_id',
       targetKey: 'id',
       as: 'house',
     });
-    room.belongsTo(models.Floor, {
+    floor.hasMany(models.Room, {
       foreignKey: 'floor_id',
-      targetKey: 'id',
-      as: 'floor',
-    });
-    room.hasMany(models.Device, {
-      foreignKey: 'room_id',
       sourceKey: 'id',
-      as: 'devices',
-    });
-    room.hasMany(models.Scene, {
-      foreignKey: 'room_id',
-      sourceKey: 'id',
-      as: 'scene',
+      as: 'rooms',
     });
   };
 
-  return room;
+  return floor;
 };
