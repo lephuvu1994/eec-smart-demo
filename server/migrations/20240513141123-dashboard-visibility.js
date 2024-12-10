@@ -6,5 +6,7 @@ module.exports = {
       allowNull: false,
     });
   },
-  down: () => {},
+  down: async (queryInterface, Sequelize) => {
+      await queryInterface.removeColumn('t_room', 'image_url');
+    },
 };
