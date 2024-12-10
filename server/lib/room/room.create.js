@@ -14,7 +14,6 @@ const { NotFoundError } = require('../../utils/coreErrors');
  */
 async function create(houseSelector, floorSelector, room) {
   // eslint-disable-next-line no-console
-  console.log('room', room);
   const house = await db.House.findOne({
     where: {
       selector: houseSelector,
