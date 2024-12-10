@@ -47,7 +47,14 @@ module.exports = {
       defaultValue: null,
     });
 
-    await queryInterface.addIndex('t_device_feature_state_aggregate', ['type']);
+    try {
+      await queryInterface.addIndex('t_device_feature_state_aggregate', ['type']);
+    } catch (error) {
+      if (error.original && error.original.code !== 'SQLITE_ERROR') {
+        throw error;
+      }
+    }
+
     await queryInterface.addIndex('t_device_feature_state_aggregate', ['device_feature_id']);
     await queryInterface.addIndex('t_device_feature_state_aggregate', ['created_at']);
     await queryInterface.addIndex('t_device_feature_state', ['created_at']);
