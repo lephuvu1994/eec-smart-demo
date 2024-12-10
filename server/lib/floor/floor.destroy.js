@@ -19,8 +19,6 @@ async function destroy(selector) {
     throw new NotFoundError('Floor not found');
   }
 
-  this.brain.removeNamedEntity('floor', floor.id, floor.name);
-
   await floor.destroy();
 }
 

@@ -22,16 +22,9 @@ async function update(selector, floor) {
     throw new NotFoundError('Floor not found');
   }
 
-  const oldName = existingFloor.name;
-
   await existingFloor.update(floor);
 
   const updatedFloorPlain = existingFloor.get({ plain: true });
-
-  if (oldName !== updatedFloorPlain.name) {
-    this.brain.removeNamedEntity('floor', updatedFloorPlain.id, oldName);
-    this.brain.addNamedEntity('floor', updatedFloorPlain.id, updatedFloorPlain.name);
-  }
 
   return updatedFloorPlain;
 }

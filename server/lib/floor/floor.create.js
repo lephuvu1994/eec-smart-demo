@@ -28,9 +28,6 @@ async function create(selector, floor) {
   const floorCreated = await db.Floor.create(floor);
   const floorPlain = floorCreated.get({ plain: true });
 
-  // add room to the brain
-  this.brain.addNamedEntity('floor', floorPlain.id, floorPlain.name);
-
   return floorPlain;
 }
 

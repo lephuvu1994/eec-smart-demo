@@ -1,5 +1,4 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
-const { buildExpandObject } = require('../../utils/buildExpandObject');
 /**
  * @apiDefine FloorParam
  * @apiParam {String} name Name of the floor.
@@ -87,7 +86,7 @@ module.exports = function FloorController(gladys) {
    * ]
    */
   async function getByHouse(req, res) {
-    const floors = await gladys.floor.getByHouse(req.params.house_selector);
+    const floors = await gladys.floor.getFloorsByHouse(req.params.house_selector);
     res.json(floors);
   }
 

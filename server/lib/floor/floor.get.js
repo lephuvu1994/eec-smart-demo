@@ -7,23 +7,6 @@ const DEFAULT_OPTIONS = {
   order_dir: 'asc',
 };
 
-const DEVICE_ATTRIBUTES = ['name', 'selector'];
-
-const DEVICE_FEATURES_ATTRIBUTES = [
-  'name',
-  'selector',
-  'category',
-  'type',
-  'read_only',
-  'unit',
-  'min',
-  'max',
-  'last_value',
-  'last_value_changed',
-];
-
-const SERVICE_ATTRIBUTES = ['id', 'name'];
-
 /**
  * @description Get all floors.
  * @returns {Promise<Array>} Resolve with list of floors.

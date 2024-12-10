@@ -6,15 +6,12 @@ const { update } = require('./floor.update');
 const { destroy } = require('./floor.destroy');
 const { getFloorsByHouse } = require('./floor.getByHouse');
 
-const Floor = function Floor(brain) {
-  this.brain = brain;
-};
+const Floor = function Floor() {};
 
 Floor.prototype.create = create;
 Floor.prototype.get = get;
 Floor.prototype.getAll = getAll;
-Floor.prototype.getByHouseAndFloor = getFloorsByHouse;
-Floor.prototype.init = init;
+Floor.prototype.getFloorsByHouse = getFloorsByHouse;
 Floor.prototype.update = update;
 Floor.prototype.destroy = destroy;
 
