@@ -12,7 +12,7 @@ function addSelector(item, prefix = '') {
   if (item.selector) {
     item.selector = slugify(item.selector);
   } else if (item.name) {
-    item.selector = slugify(prefix || '' + item.name);
+    item.selector = slugify((prefix || '') + item.name);
   }
 }
 
