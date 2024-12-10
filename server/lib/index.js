@@ -26,6 +26,7 @@ const Variable = require('./variable');
 const services = require('../services');
 const Weather = require('./weather');
 const { EVENTS } = require('../utils/constants');
+const Floor = require('./floor');
 
 /**
  * @description Start a new Gladys instance.
@@ -61,6 +62,7 @@ function Gladys(params = {}) {
   const system = new System(db.sequelize, event, config, job);
   const http = new Http(system);
   const house = new House(event, stateManager, session);
+  const floor = new Floor(brain); 
   const room = new Room(brain);
   const service = new Service(services, stateManager);
   const message = new MessageHandler(event, brain, service, stateManager, variable);
@@ -106,6 +108,7 @@ function Gladys(params = {}) {
     config,
     dashboard,
     event,
+    floor,
     house,
     http,
     job,
