@@ -34,7 +34,9 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
-  floor.beforeValidate(addSelector);
+  floor.beforeValidate((instance) => {
+    addSelector(instance, 'floor_');
+  });
 
   floor.associate = (models) => {
     floor.belongsTo(models.House, {

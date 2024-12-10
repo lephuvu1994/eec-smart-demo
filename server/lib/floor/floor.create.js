@@ -18,14 +18,12 @@ async function create(selector, floor) {
       selector,
     },
   });
-  console.log('house', house.id);
 
   if (house === null) {
     throw new NotFoundError('House not found');
   }
 
   floor.house_id = house.id;
-  console.log('floor', floor);
   const floorCreated = await db.Floor.create(floor);
 
   console.log('floorCreated', floorCreated);

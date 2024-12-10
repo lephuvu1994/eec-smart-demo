@@ -8,11 +8,11 @@ const { slugify } = require('./slugify');
  *  name: 'my object'
  * });
  */
-function addSelector(item) {
+function addSelector(item, prefix = '') {
   if (item.selector) {
     item.selector = slugify(item.selector);
   } else if (item.name) {
-    item.selector = slugify(item.name);
+    item.selector = slugify(prefix || '' + item.name);
   }
 }
 
