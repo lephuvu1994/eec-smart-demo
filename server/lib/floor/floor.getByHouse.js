@@ -1,15 +1,18 @@
 const db = require('../../models');
 
-async function getFloorsByHouse(houseId) {
-    try {
-        const floors = await db.Floor.findAll({
-            where: {
-                house_id: houseId,
-            },
-        });
-        const floors2 = await db.Floor.findAll();
-        console.log('floors', floors);
-        console.log('floors2', floors2);
+async function getFloorsByHouse(houseSelector) {
+  try {
+    const house = await db.House.findOne({
+      where: {
+        selector: houseSelector,
+      },
+    });
+    const floors = await db.Floor.findAll({
+      where: {
+        house_id: house.id,
+      },
+    });
+
     return floors;
   } catch (error) {
     throw new Error(`Error getting floors by house: ${error.message}`);
