@@ -60,5 +60,10 @@ module.exports = {
     await queryInterface.addIndex('t_device_feature_state', ['created_at']);
   },
 
-  down: async (queryInterface, Sequelize) => {},
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.removeColumn('t_device_feature', 'last_monthly_aggregate');
+    await queryInterface.removeColumn('t_device_feature', 'last_daily_aggregate');
+    await queryInterface.removeColumn('t_device_feature', 'last_hourly_aggregate');
+    await queryInterface.dropTable('t_device_feature_state_aggregate');
+  },
 };
