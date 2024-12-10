@@ -67,6 +67,12 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id',
       as: 'users_at_home',
     });
+
+    house.hasMany(models.Floor, {
+      foreignKey: 'house_id',
+      sourceKey: 'id',
+      as: 'floors',
+    });
   };
 
   return house;
