@@ -367,7 +367,6 @@ function getRoutes(gladys) {
     },
     'post /api/v1/house/:house_selector/floor': {
       authenticated: true,
-      admin: true,
       controller: floorController.create,
     },
     'get /api/v1/house/:house_selector/floor': {

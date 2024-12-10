@@ -1,7 +1,7 @@
 const db = require('../../models');
-const { Floor } = require('../../models');
 
 async function getFloorsByHouse(houseId) {
+  console.log('houseId', houseId);
   try {
     const floors = await db.Floor.findAll({
       where: {
