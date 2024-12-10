@@ -26,8 +26,10 @@ async function create(selector, floor) {
 
   floor.house_id = house.id;
   const floorCreated = await db.Floor.create(floor);
-  const floorPlain = floorCreated.get({ plain: true });
 
+  console.log('floorCreated', floorCreated);
+  const floorPlain = floorCreated.get({ plain: true });
+  console.log('floorPlain', floorPlain);
   return floorPlain;
 }
 
