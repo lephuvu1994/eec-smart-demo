@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   room.beforeValidate((instance) => {
-    addSelector(instance, instance.floor.selector + '_');
+    addSelector(instance, instance.floor_id + '_');
   });
 
   room.associate = (models) => {

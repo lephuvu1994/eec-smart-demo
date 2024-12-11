@@ -47,7 +47,7 @@ module.exports = function FloorController(gladys) {
   }
 
   /**
-   * @api {delete} /api/v1/floor/:floor_selector delete
+   * @api {delete} /api/v1/house/:house_selector/floor/:floor_selector delete
    * @apiName delete
    * @apiGroup Floor
    */
