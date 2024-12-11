@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       image_url: {
         allowNull: false,
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: '',
       },
       name: {
         allowNull: false,
@@ -47,7 +47,9 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
-  room.beforeValidate(addSelector);
+  room.beforeValidate((instance) => {
+    addSelector(instance, instance.floor.selector + '_');
+  });
 
   room.associate = (models) => {
     room.belongsTo(models.House, {

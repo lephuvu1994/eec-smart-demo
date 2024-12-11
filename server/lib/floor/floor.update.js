@@ -3,18 +3,30 @@ const { NotFoundError } = require('../../utils/coreErrors');
 
 /**
  * @description Update a floor.
- * @param {string} selector - The selector of the floor.
+ * @param {string} houseSelector - The selector of the house.
+ * @param {string} floorSelector - The selector of the floor.
  * @param {object} floor - The new floor.
  * @returns {Promise<object>} Resolve with updated floor.
  * @example
- * gladys.floor.update('first-floor', {
+ * gladys.floor.update('my-house', 'my-floor', {
  *    name: 'New First Floor'
  * });
  */
-async function update(selector, floor) {
+async function update(houseSelector, floorSelector, floor) {
+  const house = await db.House.findOne({
+    where: {
+      selector: houseSelector,
+    },
+  });
+
+  if (house === null) {
+    throw new NotFoundError('House not found');
+  }
+
   const existingFloor = await db.Floor.findOne({
     where: {
-      selector,
+      selector: floorSelector,
+      house_id: house.id,
     },
   });
 

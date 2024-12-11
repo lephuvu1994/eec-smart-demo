@@ -26,6 +26,38 @@ module.exports = function FloorController(gladys) {
     res.status(201).json(newFloor);
   }
 
+   /**
+   * @api {patch} /api/v1/house/:house_selector/floor/:floor_selector update
+   * @apiName update
+   * @apiGroup Floor
+   * @apiUse FloorParam
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "ac7f1ab2-0468-4750-bcdd-7e43b34e136a",
+   *   "name": "First Floor",
+   *   "selector": "first-floor",
+   *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
+   *   "updated_at": "2019-05-09T04:01:48.983Z",
+   *   "created_at": "2019-05-09T04:01:48.983Z"
+   * }
+   */
+   async function update(req, res) {
+    const newFloor = await gladys.floor.update(req.params.house_selector, req.params.floor_selector, req.body);
+    res.json(newFloor);
+  }
+
+  /**
+   * @api {delete} /api/v1/floor/:floor_selector delete
+   * @apiName delete
+   * @apiGroup Floor
+   */
+  async function destroy(req, res) {
+    await gladys.floor.destroy(req.params.house_selector, req.params.floor_selector);
+    res.json({
+      success: true,
+    });
+  }
+
   /**
    * @api {get} /api/v1/floor get
    * @apiName get
@@ -92,6 +124,8 @@ module.exports = function FloorController(gladys) {
 
   return Object.freeze({
     create: asyncMiddleware(create),
+    update: asyncMiddleware(update),
+    destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
     getByHouse: asyncMiddleware(getByHouse),
   });

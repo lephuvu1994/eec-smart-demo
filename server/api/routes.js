@@ -373,6 +373,17 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: floorController.getByHouse,
     },
+    //update floor
+    'patch /api/v1/house/:house_selector/floor/:floor_selector': {
+      authenticated: true,
+      controller: floorController.update,
+    },
+    //delete floor
+    'delete /api/v1/house/:house_selector/floor/:floor_selector': {
+      authenticated: true,
+      controller: floorController.destroy,
+    },
+
     // room
     'get /api/v1/room': {
       authenticated: true,
