@@ -8,7 +8,7 @@ LABEL \
   org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.version=$VERSION
 
-# COPY qemu-* /usr/bin/
+COPY qemu-* /usr/bin/
 
 # System dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -28,7 +28,7 @@ WORKDIR /tmp
 RUN mkdir /src
 WORKDIR /src
 ADD . /src
-# COPY ./static /src/server/static
+COPY ./static /src/server/static
 WORKDIR /src/server
 
 # Install build dependencies and application dependencies
