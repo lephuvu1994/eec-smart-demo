@@ -28,7 +28,7 @@ WORKDIR /tmp
 RUN mkdir /src
 WORKDIR /src
 ADD . /src
-COPY ./static /src/server/static
+# COPY ./static /src/server/static
 WORKDIR /src/server
 
 # Install build dependencies and application dependencies
