@@ -29,7 +29,7 @@ RUN mkdir /src
 WORKDIR /src
 ADD . /src
 # COPY ./static /src/server/static
-WORKDIR /src/server
+WORKDIR /src
 
 # Install build dependencies and application dependencies
 RUN apt-get update && apt-get install -y \
@@ -50,4 +50,4 @@ ENV SERVER_PORT 80
 # Export listening port
 EXPOSE 80
 
-CMD ["node", "/src/server/index.js"]
+CMD ["node", "index.js"]
