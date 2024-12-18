@@ -50,4 +50,4 @@ ENV SERVER_PORT 80
 # Export listening port
 EXPOSE 80
 
-CMD ["node", "index.js"]
+CMD ["node", "/src/server/index.js"]
