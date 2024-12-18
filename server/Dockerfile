@@ -25,11 +25,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /tmp
 
 # Install Gladys
-RUN mkdir /src
-WORKDIR /src
-ADD . /src
+# RUN mkdir /src
+# WORKDIR /src
+# ADD . /src
 # COPY ./static /src/server/static
-WORKDIR /src
+# WORKDIR /src/server
+
+WORKDIR /app
+COPY . .
 
 # Install build dependencies and application dependencies
 RUN apt-get update && apt-get install -y \
