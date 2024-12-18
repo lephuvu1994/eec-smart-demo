@@ -10,7 +10,8 @@ function isDocker() {
   return new Promise((resolve) => {
     fs.access('/.dockerenv', fs.constants.F_OK, (err) => {
       if (err) {
-        resolve(false);
+        // resolve(false);
+        resolve(true);
       } else {
         resolve(true);
       }
