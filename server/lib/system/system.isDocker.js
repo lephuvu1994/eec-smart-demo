@@ -9,12 +9,11 @@ const fs = require('fs');
 function isDocker() {
   return new Promise((resolve) => {
     fs.access('/.dockerenv', fs.constants.F_OK, (err) => {
-      return true
-      // if (err) {
-      //   resolve(false);
-      // } else {
-      //   resolve(true);
-      // }
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
     });
   });
 }
