@@ -12,18 +12,19 @@ function isDocker() {
   const checks = checkPaths.map(path => {
     return new Promise(resolve => {
       fs.access(path, fs.constants.F_OK, (err) => {
-        if (err) {
-          resolve(false);
-        } else {
-          // For /proc/self/cgroup, we should also check content
-          if (path === '/proc/self/cgroup') {
-            fs.readFile(path, 'utf8', (err, content) => {
-              resolve(!err && content.includes('docker'));
-            });
-          } else {
-            resolve(true);
-          }
-        }
+        return true
+        // if (err) {
+        //   resolve(false);
+        // } else {
+        //   // For /proc/self/cgroup, we should also check content
+        //   if (path === '/proc/self/cgroup') {
+        //     fs.readFile(path, 'utf8', (err, content) => {
+        //       resolve(!err && content.includes('docker'));
+        //     });
+        //   } else {
+        //     resolve(true);
+        //   }
+        // }
       });
     });
   });
