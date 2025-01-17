@@ -567,6 +567,7 @@ const actionsFunc = {
   },
   [ACTIONS.ZIGBEE2MQTT.SEND]: (self, action, scope) => {
     const zigbee2mqttService = self.service.getService('zigbee2mqtt');
+
     if (zigbee2mqttService) {
       const messageWithVariables = Handlebars.compile(action.message)(scope);
       zigbee2mqttService.device.publish(action.topic, messageWithVariables);
