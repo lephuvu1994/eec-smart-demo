@@ -106,7 +106,6 @@ const OPENING_SENSOR_STATE = {
 };
 
 const USER_ROLE = {
-  EECADMIN: "EecAdmin",
   ADMIN: 'admin',
   HABITANT: 'habitant',
   GUEST: 'guest',
@@ -420,6 +419,9 @@ const ACTIONS = {
   MUSIC: {
     PLAY_NOTIFICATION: 'music.play-notification',
   },
+  SMS: {
+    SEND: 'sms.send',
+  },
 };
 
 const INTENTS = {
@@ -570,6 +572,7 @@ const DEVICE_FEATURE_TYPES = {
   },
   BUTTON: {
     CLICK: 'click',
+    PUSH: 'push',
   },
   SIGNAL: {
     QUALITY: 'integer',
