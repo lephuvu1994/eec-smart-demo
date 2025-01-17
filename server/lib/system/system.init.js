@@ -20,6 +20,7 @@ async function init() {
   try {
     // we create a new dockerode instance
     const dockerode = new this.Docker();
+    console.log('dockerode', dockerode);
     // if we can contact a docker daemon, this should not fail
     await dockerode.listContainers();
     // and we should go there.

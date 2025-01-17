@@ -5,9 +5,15 @@ module.exports = {
         defaultValue: '',
         allowNull: false,
       });
+      await queryInterface.addColumn('t_room', 'image_url', {
+        type: Sequelize.STRING,
+        defaultValue: '',
+        allowNull: false,
+      });
     },
     down: async (queryInterface, Sequelize) => {
       await queryInterface.removeColumn('t_room', 'image_url');
+      await queryInterface.removeColumn('t_room', 'camera_url');
     },
   };
   
