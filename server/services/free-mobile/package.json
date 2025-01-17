@@ -1,5 +1,6 @@
 {
-  "name": "gladys-mqtt",
+  "name": "gladys-free-mobile",
+  "version": "1.0.0",
   "main": "index.js",
   "os": [
     "darwin",
@@ -12,8 +13,6 @@
     "arm64"
   ],
   "dependencies": {
-    "get-value": "^3.0.1",
-    "lodash.clonedeep": "^4.5.0",
-    "mqtt": "^4.2.6"
+    "axios": "^1.4.0"
   }
 }

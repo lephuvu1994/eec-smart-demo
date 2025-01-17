@@ -30,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: '',
       },
+      camera_url: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
       name: {
         allowNull: false,
         unique: true,

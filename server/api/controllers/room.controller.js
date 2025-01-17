@@ -19,6 +19,8 @@ module.exports = function RoomController(gladys) {
    *   "selector": "my-room",
    *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
    *   "floor_id": "4dfa6-24de-4b46-afc7-370772f068d5",
+   *   "image_url": "https://example.com/image.jpg",
+   *   "camera_url": "https://example.com/camera.jpg",
    *   "updated_at": "2019-05-09T04:01:48.983Z",
    *   "created_at": "2019-05-09T04:01:48.983Z"
    * }
