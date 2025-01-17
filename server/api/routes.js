@@ -534,6 +534,11 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: sceneController.get,
     },
+
+    'get /api/v1/:room_selector/scene': {
+      authenticated: true,
+      controller: sceneController.getByRoom,
+    },
     'get /api/v1/scene/:scene_selector': {
       authenticated: true,
       controller: sceneController.getBySelector,

@@ -46,6 +46,16 @@ module.exports = function SceneController(gladys) {
     res.json(scenes);
   }
 
+   /**
+   * @api {get} /api/v1/:room_selector/scene get by room
+   * @apiName getByRoom
+   * @apiGroup Scene
+   */
+   async function getByRoom(req, res) {
+    const scene = await gladys.scene.getByRoom(req.params.room_selector);
+    res.json(scene);
+  }
+
   /**
    * @api {get} /api/v1/scene/:scene_selector get by selector
    * @apiName getBySelector
@@ -107,6 +117,7 @@ module.exports = function SceneController(gladys) {
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
+    getByRoom: asyncMiddleware(getByRoom),
     getBySelector: asyncMiddleware(getBySelector),
     update: asyncMiddleware(update),
     start: asyncMiddleware(start),
