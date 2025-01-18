@@ -2,7 +2,7 @@ version: '3'
 
 services:
   gladys:
-    image: lephuvu/eecsmarthome-v3:1.0.3
+    image: lephuvu/eecsmarthome-v3:1.0.4
     container_name: eecsmarthome
     restart: always
     privileged: true
