@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-  gladys:
+  eecsmarthome:
     build:
       context: ./  # Thư mục hiện tại là thư mục docker, nên đặt context là './'
-      dockerfile: Dockerfile  # Dockerfile trong thư mục docker
-    container_name: gladys
+      dockerfile: ./Dockerfile  # Dockerfile trong thư mục docker
+    container_name: eecsmarthome
     restart: always
     privileged: true
     network_mode: host
-    # cgroup: host
+    cgroup: host
     logging:
       driver: "json-file"
       options:
@@ -29,6 +29,6 @@ services:
     image: containrrr/watchtower
     restart: always
     container_name: watchtower
-    command: --cleanup --include-restarting --exclude gladys
+    command: --cleanup --include-restarting --exclude eecsmarthome
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
