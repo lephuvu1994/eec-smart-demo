@@ -5,7 +5,7 @@ module.exports = {
         defaultValue: '',
         allowNull: false,
       });
-      await queryInterface.addColumn('t_room', 'image_url', {
+      await queryInterface.addColumn('t_room', 'camera_url', {
         type: Sequelize.STRING,
         defaultValue: '',
         allowNull: false,

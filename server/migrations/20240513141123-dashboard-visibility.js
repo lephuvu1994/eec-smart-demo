@@ -7,6 +7,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-      await queryInterface.removeColumn('t_room', 'image_url');
-    },
+    await queryInterface.removeColumn('t_dashboard', 'visibility');
+  },
 };
