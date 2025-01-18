@@ -16,6 +16,14 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      image_url: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      camera_url: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       floor_id: {
         allowNull: false,
         type: Sequelize.UUID,
