@@ -1,7 +1,7 @@
 const local = {
   gladysGatewayApiUrl: process.env.GLADYS_GATEWAY_API_URL || 'https://api.gladysgateway.com',
-  localApiUrl: process.env.LOCAL_API_URL || 'http://192.168.1.18:8080',
-  webSocketUrl: process.env.WEBSOCKET_URL || 'ws://192.168.1.18:8080',
+  localApiUrl: process.env.LOCAL_API_URL || 'http://192.168.1.17:80',
+  webSocketUrl: process.env.WEBSOCKET_URL || 'ws://192.168.1.17:80',
   gatewayMode: process.env.GATEWAY_MODE === 'true',
   demoMode: process.env.DEMO_MODE === 'true',
   demoRequestTime: process.env.DEMO_REQUEST_TIME || 0,

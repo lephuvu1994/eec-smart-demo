@@ -47,23 +47,11 @@ module.exports = {
       defaultValue: null,
     });
 
-    try {
-      await queryInterface.addIndex('t_device_feature_state_aggregate', ['type']);
-    } catch (error) {
-      if (error.original && error.original.code !== 'SQLITE_ERROR') {
-        throw error;
-      }
-    }
-
+    await queryInterface.addIndex('t_device_feature_state_aggregate', ['type']);
     await queryInterface.addIndex('t_device_feature_state_aggregate', ['device_feature_id']);
     await queryInterface.addIndex('t_device_feature_state_aggregate', ['created_at']);
     await queryInterface.addIndex('t_device_feature_state', ['created_at']);
   },
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('t_device_feature', 'last_monthly_aggregate');
-    await queryInterface.removeColumn('t_device_feature', 'last_daily_aggregate');
-    await queryInterface.removeColumn('t_device_feature', 'last_hourly_aggregate');
-    await queryInterface.dropTable('t_device_feature_state_aggregate');
-  },
+  down: async (queryInterface, Sequelize) => {},
 };
