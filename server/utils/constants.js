@@ -121,6 +121,7 @@ const USER_ROLE = {
   ADMIN: 'admin',
   HABITANT: 'habitant',
   GUEST: 'guest',
+  EECADMIN: 'eecAdmin',
 };
 
 const AVAILABLE_LANGUAGES = {
