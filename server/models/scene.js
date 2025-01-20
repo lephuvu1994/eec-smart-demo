@@ -174,6 +174,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       room_id: { // New field to associate scene with a room
         type: DataTypes.UUID,
+        allowNull: true,
         references: {
           model: 't_room',
           key: 'id',

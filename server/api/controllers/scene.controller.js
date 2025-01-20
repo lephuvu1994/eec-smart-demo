@@ -26,6 +26,17 @@ module.exports = function SceneController(gladys) {
   }
 
   /**
+   * @api {post} /api/v1/room/:room_selector/scene create
+   * @apiName createByRoom
+   * @apiGroup Scene
+   * @apiUse SceneParam
+   */
+  async function createByRoom(req, res) {
+    const newScene = await gladys.scene.createByRoom(req.params.room_selector, req.body);
+    res.status(201).json(newScene);
+  }
+
+  /**
    * @api {patch} /api/v1/scene/:scene_selector update
    * @apiName update
    * @apiGroup Scene
@@ -115,6 +126,7 @@ module.exports = function SceneController(gladys) {
 
   return Object.freeze({
     create: asyncMiddleware(create),
+    createByRoom: asyncMiddleware(createByRoom),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
     getByRoom: asyncMiddleware(getByRoom),

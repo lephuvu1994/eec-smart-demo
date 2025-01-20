@@ -81,6 +81,17 @@ function getRoutes(gladys) {
       rateLimit: true,
       controller: userController.login,
     },
+    'post /api/v1/loginByQR': {
+      authenticated: false,
+      rateLimit: true,
+      controller: userController.loginByQR,
+    },
+    'get /api/v1/generateQRCode': {
+      authenticated: true,
+      admin: true,
+      controller: userController.generateQRCode,
+    },
+
     'post /api/v1/access_token': {
       authenticated: false,
       rateLimit: true,
@@ -536,6 +547,11 @@ function getRoutes(gladys) {
       authenticated: true,
       admin: true,
       controller: sceneController.create,
+    },
+    'post /api/v1/room/:room_selector/scene': {
+      authenticated: true,
+      admin: true,
+      controller: sceneController.createByRoom,
     },
     'get /api/v1/scene': {
       authenticated: true,

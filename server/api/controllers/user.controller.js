@@ -2,8 +2,10 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
 const logger = require('../../utils/logger');
 const { BadParameters } = require('../../utils/coreErrors');
 const { USER_ROLE } = require('../../utils/constants');
+const { generateAccessToken } = require('../../utils/accessToken');
 
 const LOGIN_SESSION_VALIDITY_IN_SECONDS = 365 * 24 * 60 * 60;
+const QR_SESSION_VALIDITY_IN_SECONDS = 10 * 60;
 
 module.exports = function UserController(gladys) {
   /**
@@ -62,6 +64,39 @@ module.exports = function UserController(gladys) {
    */
   async function login(req, res, next) {
     const user = await gladys.user.login(req.body.email, req.body.password);
+    const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
+    const session = await gladys.session.create(
+      user.id,
+      scope,
+      LOGIN_SESSION_VALIDITY_IN_SECONDS,
+      req.headers['user-agent'],
+    );
+    const listHouse = await gladys.house.get();
+    const response = { ...user, ...session, house: listHouse };
+    res.json(response);
+  }
+
+  /**
+   * @api {get} /api/v1/generateQRCode generateQRCode
+   * @apiName generateQRCode
+   * @apiGroup User
+   * @apiSuccess {String} refresh_token the refresh token
+   * @apiSuccess {String} access_token the access token
+   */
+  async function generateQRCode(req, res, next) {
+    const qrCode = await gladys.user.generateQRCode(req.userId, this.jwtSecret);
+    res.json({ qrCode: qrCode });
+  }
+
+  /**
+   * @api {post} /api/v1/loginByQR loginByQR
+   * @apiName loginByQR
+   * @apiGroup User
+   * @apiSuccess {String} refresh_token the refresh token
+   * @apiSuccess {String} access_token the access token
+   */
+  async function loginByQR(req, res, next) {
+    const user = await gladys.user.loginWithQR(req.body.qrCode);
     const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
     const session = await gladys.session.create(
       user.id,
@@ -221,6 +256,8 @@ module.exports = function UserController(gladys) {
   return Object.freeze({
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
+    loginByQR: asyncMiddleware(loginByQR),
+    generateQRCode: asyncMiddleware(generateQRCode),
     getMySelf: asyncMiddleware(getMySelf),
     getUsers: asyncMiddleware(getUsers),
     getUserBySelector: asyncMiddleware(getUserBySelector),
