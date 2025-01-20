@@ -75,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
     room.hasMany(models.Scene, {
       foreignKey: 'room_id',
       sourceKey: 'id',
-      as: 'scene',
+      as: 'scenes',
     });
   };
 
