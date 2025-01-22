@@ -46,7 +46,8 @@ const DEFAULT = {
       server: 'mqtt://localhost:1884',
     },
     serial: {
-      port: '/dev/ttyACM0',
+      port: '/dev/ttyUSB0',
+      adapter: 'zstack',
     },
     map_options: {
       graphviz: {
