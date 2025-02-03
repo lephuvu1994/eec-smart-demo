@@ -1,23 +1,26 @@
 const db = require('../../models');
 const jwt = require('jsonwebtoken');
 const { NotFoundError } = require('../../utils/coreErrors');
+
 /**
  * @private
  * @description This function login a user.
  * @name gladys.user.login
  * @param {string} qrCode - The QR code.
+ * @param {string} jwtSecret - The JWT secret.
  * @returns {Promise} Promise.
  * @example
- * await gladys.user.loginWithQR('1234567890');
+ * await gladys.user.loginWithQR('1234567890', 'my-secret');
  */
-async function loginWithQR(qrCode) {
+async function loginWithQR(qrCode, jwtSecret) {
   /**
    * @type {object} decoded
    */
-  const decoded = jwt.verify(qrCode, this.jwtSecret, {
+  const decoded = jwt.verify(qrCode, jwtSecret, {
     issuer: 'gladys',
     audience: 'user',
   });
+
   
   const user = await db.User.findOne({
     where: { id: decoded.user_id},

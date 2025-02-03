@@ -127,6 +127,7 @@ function Gladys(params = {}) {
     system,
     variable,
     weather,
+    jwtSecret: params.jwtSecret,
     start: async () => {
       // set wal mode
       await db.sequelize.query('PRAGMA journal_mode=WAL;');

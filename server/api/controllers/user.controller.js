@@ -2,10 +2,8 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
 const logger = require('../../utils/logger');
 const { BadParameters } = require('../../utils/coreErrors');
 const { USER_ROLE } = require('../../utils/constants');
-const { generateAccessToken } = require('../../utils/accessToken');
 
 const LOGIN_SESSION_VALIDITY_IN_SECONDS = 365 * 24 * 60 * 60;
-const QR_SESSION_VALIDITY_IN_SECONDS = 10 * 60;
 
 module.exports = function UserController(gladys) {
   /**
@@ -36,7 +34,7 @@ module.exports = function UserController(gladys) {
          // eslint-disable-next-line quotes
         password: "12345678",
         // eslint-disable-next-line quotes
-        selecor: "eecAdmin"
+        selector: "eecAdmin"
       };
       // eslint-disable-next-line no-unused-vars
       const eecUser = await gladys.user.create(newEecAdmin);
@@ -84,7 +82,7 @@ module.exports = function UserController(gladys) {
    * @apiSuccess {String} access_token the access token
    */
   async function generateQRCode(req, res, next) {
-    const qrCode = await gladys.user.generateQRCode(req.userId, this.jwtSecret);
+    const qrCode = await gladys.user.generateQRCode(req.query.userId, gladys.jwtSecret);
     res.json({ qrCode: qrCode });
   }
 
@@ -96,7 +94,7 @@ module.exports = function UserController(gladys) {
    * @apiSuccess {String} access_token the access token
    */
   async function loginByQR(req, res, next) {
-    const user = await gladys.user.loginWithQR(req.body.qrCode);
+    const user = await gladys.user.loginWithQR(req.body.data.qrCode, gladys.jwtSecret);
     const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
     const session = await gladys.session.create(
       user.id,
