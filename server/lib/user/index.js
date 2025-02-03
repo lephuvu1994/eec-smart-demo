@@ -13,6 +13,8 @@ const { update } = require('./user.update');
 const { updateBySelector } = require('./user.updateBySelector');
 const { updatePassword } = require('./user.updatePassword');
 const { getByRole } = require('./user.getByRole');
+const { generateQRCode } = require('./user.generateQRCode');
+const { loginWithQR } = require('./user.loginWithQR');
 
 const User = function User(session, stateManager, variable) {
   this.session = session;
@@ -35,5 +37,8 @@ User.prototype.update = update;
 User.prototype.updateBySelector = updateBySelector;
 User.prototype.updatePassword = updatePassword;
 User.prototype.getByRole = getByRole;
+User.prototype.generateQRCode = generateQRCode;
+User.prototype.loginWithQR = loginWithQR;
+
 
 module.exports = User;
