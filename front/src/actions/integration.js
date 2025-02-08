@@ -18,7 +18,7 @@ const actions = store => ({
     let totalSize = integrations.length;
 
     // Filter integrations and categories according to user role
-    if (user.role !== USER_ROLE.ADMIN) {
+    if (![USER_ROLE.ADMIN, USER_ROLE.EECADMIN].includes(user.role)) {
       selectedIntegrations = selectedIntegrations.filter(
         i => HIDDEN_CATEGORIES_FOR_NON_ADMIN_USERS.indexOf(i.type) === -1
       );

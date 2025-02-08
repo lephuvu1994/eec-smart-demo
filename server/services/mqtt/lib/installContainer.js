@@ -64,7 +64,7 @@ async function installContainer(saveConfiguration = true) {
 
     await this.saveConfiguration({
       mqttUrl: 'mqtt://localhost',
-      mqttUsername: 'gladys',
+      mqttUsername: 'eecadmin',
       mqttPassword: generate(20, { number: true, lowercase: true, uppercase: true }),
       useEmbeddedBroker: true,
     });
