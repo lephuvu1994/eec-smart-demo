@@ -12,8 +12,10 @@ const db = require('../../models');
  */
 async function load(gladys) {
   const SERVICES_TO_LOAD = Object.keys(this.servicesFromFiles);
+  console.log("SERVICES_TO_LOAD", SERVICES_TO_LOAD);
   await Promise.all(
     SERVICES_TO_LOAD.map(async (service) => {
+      console.log("SERVICES_TO_LOAD_SERVICE", service);
       const serviceToInsertOrUpdate = {
         name: service,
         selector: service,
@@ -44,6 +46,7 @@ async function load(gladys) {
         }
       } catch (e) {
         logger.debug(e);
+        console.log("SERVICE_LOAD_ERROR", e);
         serviceToInsertOrUpdate.status = SERVICE_STATUS.DISABLED;
       }
       // we update if needed the service with success/failed enabled

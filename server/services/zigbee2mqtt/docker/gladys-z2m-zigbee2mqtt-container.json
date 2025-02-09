@@ -21,8 +21,8 @@
     "BlkioWeightDevice": [],
     "Devices": [
       {
-        "PathOnHost": "/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B001",
-        "PathInContainer": "/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B001",
+        "PathOnHost": "/dev/ttyACM0",
+        "PathInContainer": "/dev/ttyACM0",
         "CgroupPermissions": "rwm"
       }
     ]

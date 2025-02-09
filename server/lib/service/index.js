@@ -13,6 +13,7 @@ const { getUsage } = require('./service.getUsage');
 
 const Service = function Service(servicesFromFiles, stateManager) {
   this.servicesFromFiles = servicesFromFiles;
+  console.log("servicesFromFiles", this.servicesFromFiles);
   this.stateManager = stateManager;
 };
 
