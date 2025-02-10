@@ -1,8 +1,9 @@
 ARG TARGET=library
 ARG VERSION
 ARG BUILD_DATE
+ARG PLATFORM
 
-FROM --platform=linux/arm64 ${TARGET}/node:18-slim
+FROM --platform=${PLATFORM} ${TARGET}/node:18-slim
 
 LABEL \
   org.label-schema.build-date=$BUILD_DATE \
