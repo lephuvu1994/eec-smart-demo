@@ -10,7 +10,7 @@ const CONFIGURATION = {
   Z2M_MQTT_USERNAME_VALUE: 'z2m',
   Z2M_MQTT_PASSWORD_KEY: 'Z2M_MQTT_PASSWORD',
   GLADYS_MQTT_USERNAME_KEY: 'GLADYS_MQTT_USERNAME',
-  GLADYS_MQTT_USERNAME_VALUE: 'gladys',
+  GLADYS_MQTT_USERNAME_VALUE: 'eecadmin',
   GLADYS_MQTT_PASSWORD_KEY: 'GLADYS_MQTT_PASSWORD',
   DOCKER_MQTT_VERSION: 'DOCKER_MQTT_VERSION', // Variable to identify last version of MQTT docker file is installed
   DOCKER_Z2M_VERSION: 'DOCKER_Z2M_VERSION', // Variable to identify last version of Z2M docker file is installed
@@ -46,8 +46,7 @@ const DEFAULT = {
       server: 'mqtt://localhost:1884',
     },
     serial: {
-      port: '/dev/ttyUSB0',
-      adapter: 'zstack',
+      port: '/dev/ttyACM0',
     },
     map_options: {
       graphviz: {
