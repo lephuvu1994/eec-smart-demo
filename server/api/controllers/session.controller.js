@@ -12,6 +12,26 @@ module.exports = function SessionController(gladys) {
   }
 
   /**
+   * @api {delete} /api/v1/session/:session_id/user/:user_id/revoke revokeUserSessions
+   * @apiName revokeUserSessions
+   * @apiGroup Session
+   */
+  async function revokeUserSessions(req, res) {
+    const status = await gladys.session.revokeUserSessions(req.params.user_id, req.params.session_id);
+    res.json(status);
+  }
+
+  /**
+   * @api {delete} /api/v1/session/user/:user_id/revoke revokeUserAllSessions
+   * @apiName revokeUserAllSessions
+   * @apiGroup Session
+   */
+  async function revokeUserAllSessions(req, res) {
+    const status = await gladys.session.revokeUserAllSessions(req.params.user_id);
+    res.json(status);
+  }
+
+  /**
    * @api {post} /api/v1/session/tablet_mode setTabletMode
    * @apiName setTabletMode
    * @apiGroup Session
@@ -59,6 +79,8 @@ module.exports = function SessionController(gladys) {
 
   return Object.freeze({
     revoke: asyncMiddleware(revoke),
+    revokeUserSessions: asyncMiddleware(revokeUserSessions),
+    revokeUserAllSessions: asyncMiddleware(revokeUserAllSessions),
     createApiKey: asyncMiddleware(createApiKey),
     get: asyncMiddleware(get),
     setTabletMode: asyncMiddleware(setTabletMode),

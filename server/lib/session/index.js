@@ -9,6 +9,8 @@ const { setTabletModeLocked } = require('./session.setTabletModeLocked');
 const { unlockTabletMode } = require('./session.unlockTabletMode');
 const { getTabletMode } = require('./session.getTabletMode');
 const { setTabletMode } = require('./session.setTabletMode');
+const { revokeUserSessions } = require('./session.revokeUserSessions');
+const { revokeUserAllSessions } = require('./session.revokeUserAllSessions');
 
 const Session = function Session(jwtSecret, cache) {
   this.jwtSecret = jwtSecret;
@@ -22,6 +24,8 @@ Session.prototype.getAccessToken = getAccessToken;
 Session.prototype.validateAccessToken = validateAccessToken;
 Session.prototype.validateApiKey = validateApiKey;
 Session.prototype.revoke = revoke;
+Session.prototype.revokeUserSessions = revokeUserSessions;
+Session.prototype.revokeUserAllSessions = revokeUserAllSessions;
 Session.prototype.setTabletModeLocked = setTabletModeLocked;
 Session.prototype.unlockTabletMode = unlockTabletMode;
 Session.prototype.getTabletMode = getTabletMode;

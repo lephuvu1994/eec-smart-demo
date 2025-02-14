@@ -521,6 +521,20 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: sessionController.revoke,
     },
+    //Admin delete session for a user
+    'delete /api/v1/session/:session_id/user/:user_id/revoke': {
+      authenticated: true,
+      admin: true,
+      controller: sessionController.revokeUserSessions,
+    },
+
+    //Admin delete all sessions for a user
+    'delete /api/v1/session/user/:user_id/revoke': {
+      authenticated: true,
+      admin: true,
+      controller: sessionController.revokeUserAllSessions,
+    },
+
     'post /api/v1/session/tablet_mode': {
       authenticated: true,
       controller: sessionController.setTabletMode,
