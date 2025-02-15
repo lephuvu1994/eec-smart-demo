@@ -77,12 +77,23 @@ module.exports = function SessionController(gladys) {
     res.json(sessions);
   }
 
+  /**
+   * @api {get} /api/v1/session/user/:user_id getByUser
+   * @apiName getByUser
+   * @apiGroup Session
+   */
+  async function getByUser(req, res) {
+    const sessions = await gladys.session.get(req.params.user_id, req.query);
+    res.json(sessions);
+  }
+
   return Object.freeze({
     revoke: asyncMiddleware(revoke),
     revokeUserSessions: asyncMiddleware(revokeUserSessions),
     revokeUserAllSessions: asyncMiddleware(revokeUserAllSessions),
     createApiKey: asyncMiddleware(createApiKey),
     get: asyncMiddleware(get),
+    getByUser: asyncMiddleware(getByUser),
     setTabletMode: asyncMiddleware(setTabletMode),
     getTabletMode: asyncMiddleware(getTabletMode),
   });

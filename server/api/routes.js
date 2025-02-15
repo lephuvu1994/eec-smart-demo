@@ -551,6 +551,12 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: sessionController.get,
     },
+    'get /api/v1/session/user/:user_id': {
+      authenticated: true,
+      admin: true,
+      controller: sessionController.getByUser,
+    },
+
     // light
     'post /api/v1/light/:device_selector/on': {
       authenticated: true,
