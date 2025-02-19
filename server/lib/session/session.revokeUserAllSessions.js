@@ -2,44 +2,48 @@ const db = require('../../models');
 const { NotFoundError } = require('../../utils/coreErrors');
 
 /**
- * @description Revoke a session.
+ * @description Revoke all sessions of a user.
  * @param {string} userId - Id of the user.
- * @returns {Promise} Return the revoked session.
+ * @returns {Promise} Return the number of revoked sessions.
  * @example
- * revoke('375223b3-71c6-4b61-a346-0a9d5baf12b4', '0a5f7305-4faf-42b3-aeb2-fbc0217c4855');
+ * revokeUserAllSessions('375223b3-71c6-4b61-a346-0a9d5baf12b4');
  */
 async function revokeUserAllSessions(userId) {
+  // Find all sessions of the user
   const sessions = await db.Session.findAll({
     attributes: ['id'],
     where: {
-          user_id: userId,
-        },
+      user_id: userId,
+      revoked: false, // Only get non-revoked sessions
+    },
   });
 
-  if (sessions === null) {
-    throw new NotFoundError('Session not found');
+  if (sessions.length === 0) {
+    throw new NotFoundError('No active sessions found for this user');
   }
 
-  for (const session of sessions) {
-    await session.update({ revoked: true });
+  // Revoke all sessions in DB
+  await db.Session.update(
+    { revoked: true },
+    {
+      where: {
+        user_id: userId,
+        revoked: false,
+      },
+    }
+  );
+
+  // Revoke all sessions in RAM cache
+  sessions.forEach((session) => {
     this.cache.set(`revoked_session:${session.id}`, true);
-  }
-
-  const listSessions = sessions.map((session) => {
-    return {
-      id: session.id,
-      revoked: true,
-      session: session.useragent,
-    };
   });
 
   return {
-      status: 'success',
-      user_id: userId,
-      listSessions: listSessions,
+    revokedCount: sessions.length,
+    message: `Successfully revoked ${sessions.length} sessions`,
   };
 }
 
 module.exports = {
-    revokeUserAllSessions,
+  revokeUserAllSessions,
 };

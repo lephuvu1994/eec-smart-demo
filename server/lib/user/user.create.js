@@ -37,7 +37,8 @@ async function create(user) {
   if (clientId === null) {
     await this.variable.setValue('GLADYS_INSTANCE_CLIENT_ID', uuid.v4());
   }
-  return plainUser;
+  const house = await db.House.get();
+  return { ...plainUser, house: house };
 }
 
 module.exports = {
