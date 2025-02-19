@@ -93,6 +93,13 @@ async function get(options) {
     };
   }
 
+  if (optionsWithDefault.roomId) {
+    const condition = {
+      room_id: optionsWithDefault.roomId,
+    };
+    queryParams.where = queryParams.where ? Sequelize.and(queryParams.where, condition) : condition;
+  }
+
   if (optionsWithDefault.service) {
     const service = await this.serviceManager.getLocalServiceByName(optionsWithDefault.service);
     if (!service) {

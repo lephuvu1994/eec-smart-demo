@@ -9,9 +9,8 @@ module.exports = function DeviceController(gladys) {
    * @apiGroup Device
    */
   async function getListDeviceByRoomId(req, res) {
-    const devices = await gladys.device.get(req.query);
-    const devicesInRoom = devices.filter(device => device.room_id === (req.params.room_id));
-    res.json(devicesInRoom);
+    const devices = await gladys.device.getByRoomId(req.params.room_id);
+    res.json(devices);
   }
 
   /**
