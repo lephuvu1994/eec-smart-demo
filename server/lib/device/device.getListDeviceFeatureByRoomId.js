@@ -145,13 +145,19 @@ async function getListDeviceFeatureByRoomId(roomId, options) {
     });
     return rawDevice;
   });
-  const markDevicePlain = devicesPlain.map((device) => {
-    const features = device.features.filter(
-      (feature) => (feature.room_id === roomId || (feature.room_id === null)),
+
+  const listDeviceByRoom = devicesPlain.filter(device => 
+    device.room_id === roomId || device.features.some(feature => feature.room_id === roomId)
+  );
+
+  const markDevicePlain = listDeviceByRoom.map(device => {
+    const features = device.features.filter(feature => 
+      device.room_id === roomId 
+        ? feature.room_id === null || feature.room_id === roomId
+        : feature.room_id === roomId
     );
     return { ...device, features };
   });
-
   return markDevicePlain;
 }
 
