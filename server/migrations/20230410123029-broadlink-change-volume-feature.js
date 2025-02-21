@@ -69,6 +69,7 @@ module.exports = {
               has_feedback: true,
               min: 0,
               max: 1,
+              room_id: device.room_id,
             };
 
             await db.DeviceFeature.create(feature);

@@ -72,6 +72,14 @@ module.exports = {
       last_value_changed: {
         type: Sequelize.DATE,
       },
+      room_id: {
+        allowNull: true,
+        type: Sequelize.UUID,
+        references: {
+          model: 't_room',
+          key: 'id',
+        }
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
