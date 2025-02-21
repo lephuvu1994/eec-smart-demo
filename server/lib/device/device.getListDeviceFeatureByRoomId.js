@@ -145,12 +145,14 @@ async function getListDeviceFeatureByRoomId(roomId, options) {
     });
     return rawDevice;
   });
+  const markDevicePlain = devicesPlain.map((device) => {
+    const features = device.features.filter(
+      (feature) => (feature.room_id === roomId || (feature.room_id === null)),
+    );
+    return { ...device, features };
+  });
 
-  const features = devicesPlain.features.filter(
-    (feature) => (feature.room_id === roomId || (feature.room_id === null)),
-  );
-
-  return { ...devicesPlain, features };
+  return markDevicePlain;
 }
 
 module.exports = {
