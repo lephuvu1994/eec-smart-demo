@@ -91,15 +91,6 @@ async function getListDeviceFeatureByRoomId(roomId, options) {
     };
   }
 
-  if (roomId) {
-    const condition = {
-      room_id: roomId,
-    };
-    queryParams.include[0].where = queryParams.include[0].where
-      ? Sequelize.and(queryParams.include[0].where, condition)
-      : condition;
-  }
-
   if (optionsWithDefault.service) {
     const service = await this.serviceManager.getLocalServiceByName(optionsWithDefault.service);
     if (!service) {
