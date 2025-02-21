@@ -36,6 +36,7 @@ const { checkBatteries } = require('./device.checkBatteries');
 const { migrateFromSQLiteToDuckDb } = require('./device.migrateFromSQLiteToDuckDb');
 const { getDuckDbMigrationState } = require('./device.getDuckDbMigrationState');
 const { purgeAllSqliteStates } = require('./device.purgeAllSqliteStates');
+const { getListDeviceFeatureByRoomId } = require('./device.getListDeviceFeatureByRoomId');
 
 const DeviceManager = function DeviceManager(
   eventManager,
@@ -115,6 +116,7 @@ DeviceManager.prototype.init = init;
 DeviceManager.prototype.get = get;
 DeviceManager.prototype.getBySelector = getBySelector;
 DeviceManager.prototype.getByRoomId = getByRoomId;
+DeviceManager.prototype.getListDeviceFeatureByRoomId = getListDeviceFeatureByRoomId;
 DeviceManager.prototype.getDeviceFeaturesAggregates = getDeviceFeaturesAggregates;
 DeviceManager.prototype.getDeviceFeaturesAggregatesMulti = getDeviceFeaturesAggregatesMulti;
 DeviceManager.prototype.onPurgeStatesEvent = onPurgeStatesEvent;

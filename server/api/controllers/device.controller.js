@@ -14,6 +14,16 @@ module.exports = function DeviceController(gladys) {
   }
 
   /**
+   * @api {get} /api/v1/device/:room_id/feature getListDeviceFeatureByRoomId
+   * @apiName getListDeviceFeatureByRoomId
+   * @apiGroup Device
+   */
+  async function getListDeviceFeatureByRoomId(req, res) {
+    const devices = await gladys.device.getListDeviceFeatureByRoomId(req.params.room_id);
+    res.json(devices);
+  }
+
+  /**
    * @api {get} /api/v1/device/:device_selector getBySelector
    * @apiName getBySelector
    * @apiGroup Device
@@ -154,6 +164,7 @@ module.exports = function DeviceController(gladys) {
     getListDeviceByRoomId: asyncMiddleware(getListDeviceByRoomId),
     get: asyncMiddleware(get),
     getDevicesByService: asyncMiddleware(getDevicesByService),
+    getListDeviceFeatureByRoomId: asyncMiddleware(getListDeviceFeatureByRoomId),
     getBySelector: asyncMiddleware(getBySelector),
     destroy: asyncMiddleware(destroy),
     setValue: asyncMiddleware(setValue),

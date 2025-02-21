@@ -222,6 +222,10 @@ function getRoutes(gladys) {
       authenticated: true,
       controller: deviceController.getListDeviceByRoomId,
     },
+    'get /api/v1/device/:room_id/feature': {
+      authenticated: true,
+      controller: deviceController.getListDeviceFeatureByRoomId,
+    },
     'get /api/v1/device/duckdb_migration_state': {
       authenticated: true,
       controller: deviceController.getDuckDbMigrationState,

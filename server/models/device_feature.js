@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
+      room_id: {
+        type: DataTypes.UUID,
+        references: {
+          model: 't_room',
+          key: 'id',
+        },
+      },
       device_id: {
         allowNull: false,
         type: DataTypes.UUID,
@@ -104,6 +111,11 @@ module.exports = (sequelize, DataTypes) => {
   deviceFeature.beforeValidate(addSelector);
 
   deviceFeature.associate = (models) => {
+    deviceFeature.belongsTo(models.Room, {
+      foreignKey: 'room_id',
+      targetKey: 'id',
+      as: 'room',
+      });
     deviceFeature.belongsTo(models.Device, {
       foreignKey: 'device_id',
       targetKey: 'id',
